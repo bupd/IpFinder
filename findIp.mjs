@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';// Importing node-fetch
 
-async function fetchIPAddress(domain) {
+export async function fetchIPAddress(domain) {
   try {
     const resp = await fetch(
       `https://cloudflare-dns.com/dns-query?name=${domain}&type=A`,
@@ -25,8 +25,8 @@ async function fetchIPAddress(domain) {
 }
 
 // don't touch below this line
-
-const domain = "siddhaai-demo-api.blueswype.in";
+const domain = document.getElementById("domainInput").value;
+document.getElementById('fetchButton').addEventListener('click', fetchIpAddress);
 fetchIPAddress(domain)
   .then(ipAddress => {
     if (!ipAddress) {
